@@ -1,1 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuxeBeauty Dubai - Premium Health & Beauty Products</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: '#D4AF37',
+                        rose: '#E91E63',
+                        luxury: '#1a1a2e'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+        
+        .font-luxury { font-family: 'Playfair Display', serif; }
+        .font-modern { font-family: 'Inter', sans-serif; }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .luxury-card {
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .shimmer {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        .cart-slide {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .cart-slide.open {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="font-modern bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <h1 class="font-luxury text-3xl font-bold text-luxury">LuxeBeauty</h1>
+                    <span class="ml-2 text-gold text-sm font-medium">Dubai</span>
+                </div>
+                
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#perfumes" class="text-gray-700 hover:text-rose transition-colors">Perfumes</a>
+                    <a href="#cosmetics" class="text-gray-700 hover:text-rose transition-colors">Cosmetics</a>
+                    <a href="#shipping" class="text-gray-700 hover:text-rose transition-colors">Shipping</a>
+                </nav>
+                
+                <button onclick="toggleCart()" class="relative bg-rose text-white px-6 py-2 rounded-full hover:bg-rose-600 transition-colors">
+                    <span class="mr-2">Cart</span>
+                    <span id="cartCount" class="bg-gold text-luxury px-2 py-1 rounded-full text-xs font-bold">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="font-luxury text-5xl md:text-6xl font-bold mb-6">Premium Beauty from Dubai</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Authentic perfumes and cosmetics shipped directly to Philippines via Pinas Cargo & LBC</p>
+            <div class="bg-white/20 backdrop-blur-sm rounded-lg p-6 max-w-md mx-auto">
+                <h3 class="font-semibold text-lg mb-2">Shipping Info</h3>
+                <p class="text-sm">Minimum 10kg order • ₱150 base + ₱5/kg additional</p>
+                <p class="text-xs mt-2 opacity-90">Delivered via Pinas Cargo & LBC</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="font-luxury text-4xl font-bold text-center text-luxury mb-12">Our Categories</h2>
+            
+            <!-- Perfumes Section -->
+            <div id="perfumes" class="mb-16">
+                <h3 class="font-luxury text-3xl font-semibold text-luxury mb-8 flex items-center">
+                    <span class="mr-3">🌹</span> Premium Perfumes
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="luxury-card rounded-xl p-6 hover:shadow-2xl transition-all duration-300">
+                        <div class="bg-gradient-to-br from-rose-100 to-rose-200 h-48 rounded-lg mb-4 flex items-center justify-center">
+                            <span class="text-6xl">💐</span>
+                        </div>
+                        <h4 class="font-luxury text-xl font-semibold mb-2">Floral Essence</h4>
+                        <p class="text-gray-600 mb-3">Luxurious floral fragrance with notes of rose and jasmine</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-2xl font-bold text-luxury">₱2,500</span>
+                            <span class="text-sm text-gray-500">Weight: 0.5kg</span>
+                        </div>
+                        <button onclick="addToCart('Floral Essence', 2500, 0.5, '💐')" class="w-full bg-rose text-white py-2 rounded-lg hover:bg-rose-600 transition-colors">
+                            Add to Cart
+                        </button>
+                    </div>
+
+                    <div class="luxury-card rounded-xl p-6 hover:shadow-2xl transition-all duration-300">
+                        <div class="bg-gradient-to-br from-blue-100 to-blue-200 h-48 rounded-lg mb-4 flex items-center justify-center">
+                            <span class="text-6xl">🌊</span>
+                        </div>
+                        <h4 class="font-luxury text-xl font-semibold mb-2">Ocean Breeze</h4>
+                        <p class="text-gray-600 mb-3">Fresh aquatic scent perfect for daily wear</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-2xl font-bold text-luxury">₱2,200</span>
+                            <span class="text-sm text-gray-500">Weight: 0.5kg</span>
+                        </div>
+                        <button onclick="addToCart('Ocean Breeze', 2200, 0.5, '🌊')" class="w-full bg-rose text-white py-2 rounded-lg hover:bg-rose-600 transition-colors">
+                            Add to Cart
+                        </button>
+                    </div>
+
+                    <div class="luxury-card rounded-xl p-6 hover:shadow-2xl transition-all duration-300">
+                        <div class="bg-gradient-to-br from-purple-100 to-purple-200 h-48 rounded-lg mb-4 flex items-center justify-center">
+                            <span class="text-6xl">✨</span>
+                        </div>
+                        <h4 class="font-luxury text-xl font-semibold mb-2">Midnight Luxury</h4>
+                        <p class="text-gray-600 mb-3">Sophisticated evening fragrance with woody notes</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-2xl font-bold text-luxury">₱3,200</span>
+                            <span class="text-sm text-gray-500">Weight: 0.5kg</span>
+                        </div>
+                        <button onclick="addToCart('Midnight Luxury', 3200, 0.5, '✨')" class="w-full bg-rose text-white py-2 rounded-lg hover:bg-rose-600 transition-colors">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cosmetics Section -->
+            <div id="cosmetics">
+                <h3 class="font-luxury text-3xl font-semibold text-luxury mb-8 flex items-center">
+                    <span class="mr-3">💄</span> Premium Cosmetics
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="luxury-card rounded-xl p-6 hover:shadow-2xl transition-all duration-300">
+                        <div class="bg-gradient-to-br from-pink-100 to-pink-200 h-48 rounded-lg mb-4 flex items-center justify-center">
+                            <span class="text-6xl">💋</span>
+                        </div>
+                        <h4 class="font-luxury text-xl font-semibold mb-2">Luxury Lipstick Set</h4>
+                        <p class="text-gray-600 mb-3">Premium matte lipsticks in 6 stunning shades</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-2xl font-bold text-luxury">₱1,800</span>
+                            <span class="text-sm text-gray-500">Weight: 0.3kg</span>
+                        </div>
+                        <button onclick="addToCart('Luxury Lipstick Set', 1800, 0.3, '💋')" class="w-full bg-rose text-white py-2 rounded-lg hover:bg-rose-600 transition-colors">
+                            Add to Cart
+                        </button>
+                    </div>
+
+                    <div class="luxury-card rounded-xl p-6 hover:shadow-2xl transition-all duration-300">
+                        <div class="bg-gradient-to-br from-yellow-100 to-yellow-200 h-48 rounded-lg mb-4 flex items-center justify-center">
+                            <span class="text-6xl">✨</span>
+                        </div>
+                        <h4 class="font-luxury text-xl font-semibold mb-2">Gold Foundation</h4>
+                        <p class="text-gray-600 mb-3">24k gold-infused foundation for radiant skin</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-2xl font-bold text-luxury">₱2,800</span>
+                            <span class="text-sm text-gray-500">Weight: 0.4kg</span>
+                        </div>
+                        <button onclick="addToCart('Gold Foundation', 2800, 0.4, '✨')" class="w-full bg-rose text-white py-2 rounded-lg hover:bg-rose-600 transition-colors">
+                            Add to Cart
+                        </button>
+                    </div>
+
+                    <div class="luxury-card rounded-xl p-6 hover:shadow-2xl transition-all duration-300">
+                        <div class="bg-gradient-to-br from-indigo-100 to-indigo-200 h-48 rounded-lg mb-4 flex items-center justify-center">
+                            <span class="text-6xl">👁️</span>
+                        </div>
+                        <h4 class="font-luxury text-xl font-semibold mb-2">Eye Palette Deluxe</h4>
+                        <p class="text-gray-600 mb-3">Professional eyeshadow palette with 20 colors</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-2xl font-bold text-luxury">₱2,200</span>
+                            <span class="text-sm text-gray-500">Weight: 0.6kg</span>
+                        </div>
+                        <button onclick="addToCart('Eye Palette Deluxe', 2200, 0.6, '👁️')" class="w-full bg-rose text-white py-2 rounded-lg hover:bg-rose-600 transition-colors">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shipping Info -->
+    <section id="shipping" class="bg-luxury text-white py-16">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="font-luxury text-4xl font-bold mb-8">Shipping from Dubai to Philippines</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+                    <h3 class="font-semibold text-xl mb-4">📦 Shipping Requirements</h3>
+                    <ul class="text-left space-y-2">
+                        <li>• Minimum order: 10kg</li>
+                        <li>• Maximum order: 30kg</li>
+                        <li>• Shipped via Pinas Cargo & LBC</li>
+                        <li>• Delivery time: 7-14 days</li>
+                    </ul>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+                    <h3 class="font-semibold text-xl mb-4">💰 Shipping Costs</h3>
+                    <ul class="text-left space-y-2">
+                        <li>• Base cost (10kg): ₱150</li>
+                        <li>• Additional per kg: ₱5</li>
+                        <li>• Example: 15kg = ₱175</li>
+                        <li>• Free packaging & handling</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="fixed top-0 right-0 h-full w-96 bg-white shadow-2xl z-50 cart-slide">
+        <div class="p-6 border-b">
+            <div class="flex justify-between items-center">
+                <h3 class="font-luxury text-2xl font-bold text-luxury">Shopping Cart</h3>
+                <button onclick="toggleCart()" class="text-gray-500 hover:text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <div id="cartItems" class="flex-1 overflow-y-auto p-6">
+            <p class="text-gray-500 text-center">Your cart is empty</p>
+        </div>
+        
+        <div class="border-t p-6">
+            <div id="cartSummary" class="space-y-3 mb-4">
+                <div class="flex justify-between">
+                    <span>Total Weight:</span>
+                    <span id="totalWeight">0kg</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Products Total:</span>
+                    <span id="productsTotal">₱0</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Shipping Cost:</span>
+                    <span id="shippingCost">₱0</span>
+                </div>
+                <div class="flex justify-between font-bold text-lg border-t pt-2">
+                    <span>Grand Total:</span>
+                    <span id="grandTotal">₱0</span>
+                </div>
+            </div>
+            
+            <div id="weightWarning" class="bg-red-100 text-red-700 p-3 rounded-lg mb-4 hidden">
+                <p class="text-sm font-medium">⚠️ Minimum order is 10kg for shipping to Philippines</p>
+            </div>
+            
+            <button id="checkoutBtn" onclick="checkout()" class="w-full bg-rose text-white py-3 rounded-lg font-semibold hover:bg-rose-600 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed" disabled>
+                Proceed to Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div id="cartOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden" onclick="toggleCart()"></div>
+
+    <script>
+        let cart = [];
+        const AED_TO_PHP = 15.5; // Current exchange rate (approximate)
+        
+        function addToCart(name, price, weight, emoji) {
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    name: name,
+                    price: price,
+                    weight: weight,
+                    emoji: emoji,
+                    quantity: 1
+                });
+            }
+            
+            updateCart();
+            
+            // Show success animation
+            const button = event.target;
+            const originalText = button.textContent;
+            button.textContent = 'Added! ✓';
+            button.style.backgroundColor = '#10B981';
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.backgroundColor = '';
+            }, 1500);
+        }
+        
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+        
+        function updateQuantity(index, change) {
+            cart[index].quantity += change;
+            if (cart[index].quantity <= 0) {
+                removeFromCart(index);
+            } else {
+                updateCart();
+            }
+        }
+        
+        function updateCart() {
+            const cartCount = document.getElementById('cartCount');
+            const cartItems = document.getElementById('cartItems');
+            const totalWeight = document.getElementById('totalWeight');
+            const productsTotal = document.getElementById('productsTotal');
+            const shippingCost = document.getElementById('shippingCost');
+            const grandTotal = document.getElementById('grandTotal');
+            const weightWarning = document.getElementById('weightWarning');
+            const checkoutBtn = document.getElementById('checkoutBtn');
+            
+            // Calculate totals
+            let itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            let weight = cart.reduce((sum, item) => sum + (item.weight * item.quantity), 0);
+            let productsPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            // Calculate shipping cost
+            let shipping = 0;
+            if (weight >= 10) {
+                shipping = 150 + ((weight - 10) * 5); // Base 150 PHP for 10kg + 5 PHP per additional kg
+            }
+            
+            // Update display
+            cartCount.textContent = itemCount;
+            totalWeight.textContent = weight.toFixed(1) + 'kg';
+            productsTotal.textContent = '₱' + productsPrice.toLocaleString();
+            shippingCost.textContent = '₱' + shipping.toLocaleString();
+            grandTotal.textContent = '₱' + (productsPrice + shipping).toLocaleString();
+            
+            // Show/hide weight warning
+            if (weight > 0 && weight < 10) {
+                weightWarning.classList.remove('hidden');
+                checkoutBtn.disabled = true;
+            } else if (weight > 30) {
+                weightWarning.innerHTML = '<p class="text-sm font-medium">⚠️ Maximum order is 30kg. Please reduce quantity.</p>';
+                weightWarning.classList.remove('hidden');
+                checkoutBtn.disabled = true;
+            } else {
+                weightWarning.classList.add('hidden');
+                checkoutBtn.disabled = weight === 0;
+            }
+            
+            // Update cart items display
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p class="text-gray-500 text-center">Your cart is empty</p>';
+            } else {
+                cartItems.innerHTML = cart.map((item, index) => `
+                    <div class="flex items-center justify-between p-4 border-b">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-2xl">${item.emoji}</span>
+                            <div>
+                                <h4 class="font-semibold">${item.name}</h4>
+                                <p class="text-sm text-gray-500">₱${item.price.toLocaleString()} • ${item.weight}kg each</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="updateQuantity(${index}, -1)" class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300">-</button>
+                            <span class="w-8 text-center">${item.quantity}</span>
+                            <button onclick="updateQuantity(${index}, 1)" class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300">+</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+        
+        function toggleCart() {
+            const sidebar = document.getElementById('cartSidebar');
+            const overlay = document.getElementById('cartOverlay');
+            
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('hidden');
+        }
+        
+        function checkout() {
+            if (cart.length === 0) return;
+            
+            const weight = cart.reduce((sum, item) => sum + (item.weight * item.quantity), 0);
+            const productsPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const shipping = 150 + ((weight - 10) * 5);
+            const total = productsPrice + shipping;
+            
+            alert(`🎉 Order Summary:\n\nProducts: ₱${productsPrice.toLocaleString()}\nShipping (${weight.toFixed(1)}kg): ₱${shipping.toLocaleString()}\nTotal: ₱${total.toLocaleString()}\n\nThis is a demo. In a real store, you would proceed to payment and provide shipping details for delivery to Philippines via Pinas Cargo & LBC.`);
+        }
+        
+        // Initialize
+        updateCart();
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96eea95491c4b47f',t:'MTc1NTE1NTczMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
 
